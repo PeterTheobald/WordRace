@@ -10,5 +10,5 @@ The playing tiles to mark played letters can be bought from The Game Crafter:
 
 The tricky part was creating a board that is easy to find interesting long words. Random letter placement made terrible boards where words couldn't be made and unplayable dead ends abounded. A better attempt used English language letter frequencies, but that board was still unsatisfactory. The current board uses the frequency of START letters of English words to place the top and bottom home rows, and uses the frequency of English BIGRAMS (letter pairs) to place letters next to already existing letters. This produced a pretty good board. Finally I run rounds of Simulated Annealing to improve the board greatly, favoring boards that can make longer words.
 
-[Sample HEX board](hex_grid.pdf)
-[Sample SQUARE board](square_grid.pdf)
+- [Sample HEX board](hex_grid.pdf)
+- [Sample SQUARE board](square_grid.pdf)
