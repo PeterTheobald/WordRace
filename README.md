@@ -1,5 +1,5 @@
 WordRace creates a printable board game.
-The game board is a 10x13 grid of hexes of squares filled with letters.
+The game board is a 10x13 grid of hexes or squares filled with letters.
 The top and bottom row are red and blue respectively for the players' start home rows.
 The players take turns laying down a word starting with a colored cell and playing subsequent letters forming a full word. The program is meant to be run multiple times to create a pad of dozens of PDFs to be printed on heavy stock paper.
 
