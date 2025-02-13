@@ -344,7 +344,7 @@ def draw_board(c: canvas.Canvas, board: List[List[str]]) -> None:
 
             if letter:
                 c.setFillColorRGB(0, 0, 0)
-                c.setFont("Helvetica", 10)
+                c.setFont("Helvetica", 16)
                 text_x = x_offset + SQUARE_SIZE / 2
                 text_y = y_offset + SQUARE_SIZE / 2 - 3
                 if letter == "Q":

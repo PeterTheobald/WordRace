@@ -407,7 +407,7 @@ def draw_board(c: canvas.Canvas, board: List[List[str]]) -> None:
 
             if letter:
                 c.setFillColorRGB(0, 0, 0)
-                c.setFont("Helvetica", 10)
+                c.setFont("Helvetica", 14)
                 if letter == "Q":
                     c.drawCentredString(x_offset, y_offset - 3, "Qu")
                 else:
