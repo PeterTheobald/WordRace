@@ -186,15 +186,18 @@ def evaluate_board(
         current_word: str,
         starting_home_row: bool,
     ) -> None:
-        nonlocal total_score
+        
+        cell_score=0.0
 
         if len(current_word) >= 4 and current_word in words_set:
             if starting_home_row:
                 starting_row_multiplier = 3
             else:
                 starting_row_multiplier = 1
-            total_score += (
+            cell_score += (
                 len(current_word) * LONG_WORD_MULTIPLIER * starting_row_multiplier
+                # use LONG_WORD_MULTIPLIER to reward longer words
+                # use starting_row_multiplier to make good starting row more important
             )
 
         for nr, nc in get_neighbors(r, c):
@@ -203,8 +206,10 @@ def evaluate_board(
                 next_word = current_word + next_letter
                 if next_word in prefixes_set:
                     visited.add((nr, nc))
-                    dfs(nr, nc, visited, next_word, starting_home_row)
+                    cell_score += dfs(nr, nc, visited, next_word, starting_home_row)
                     visited.remove((nr, nc))
+                    
+        return cell_score
 
     for r in range(ROWS):
         for c in range(COLS):
@@ -215,7 +220,8 @@ def evaluate_board(
                 continue
             visited: Set[Tuple[int, int]] = set()
             visited.add((r, c))
-            dfs(r, c, visited, start_letter, (r == 0 or r == ROWS - 1))
+            total_score += math.sqrt( dfs(r, c, visited, start_letter, (r == 0 or r == ROWS - 1)))
+            # use sqrt to lessen the importance of hyper-connected cells over poorly-connected cells
 
     return total_score
 
@@ -354,7 +360,7 @@ def main() -> None:
 
     board = generate_initial_board(start_freq, bigram_freq)
     initial_score = evaluate_board(board, dict_words, dict_prefixes)
-    print(f"Initial Score: {initial_score}")
+    print(f"Initial Score: {initial_score:.0f}")
 
     best_board, best_score = simulated_annealing(
         board,
@@ -365,7 +371,7 @@ def main() -> None:
         end_temp=0.1,
         steps=100,
     )
-    print(f"Best Score Found: {best_score}")
+    print(f"Best Score Found: {best_score:.0f}")
 
     c = canvas.Canvas("square_grid.pdf", pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
     draw_board(c, best_board)
@@ -374,7 +380,7 @@ def main() -> None:
 
     print_board(best_board)
     final_score = evaluate_board(best_board, dict_words, dict_prefixes)
-    print(f"Board Score: {final_score}")
+    print(f"Board Score: {final_score:.0f}")
 
 
 if __name__ == "__main__":
