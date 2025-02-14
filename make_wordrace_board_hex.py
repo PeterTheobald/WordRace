@@ -89,7 +89,7 @@ def load_dictionary(filename: str = "dict.txt") -> Tuple[Set[str], Set[str]]:
     with open(filename, "r") as f:
         for line in f:
             w = line.strip().upper()
-            if w:
+            if w and w[0]!='#':
                 words.add(w)
                 for i in range(1, len(w) + 1):
                     prefixes.add(w[:i])

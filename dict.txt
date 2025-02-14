@@ -1,4 +1,4 @@
-SOWPODS (Europe Scrabble Word List)
+# SOWPODS (Europe Scrabble Word List)
 
 aa
 aah
