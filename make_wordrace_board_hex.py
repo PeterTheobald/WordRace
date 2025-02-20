@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# Peter Theobald - 2025 - @ControlAltPete
+# Create playing boards for a WordBase-like board game
+
 import copy
 import math
 import random
